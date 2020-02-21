@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +14,13 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware(['cors'])->group(function (){
+    Route::post('/register', function(Request $request){
+        return response()->json(['msg'=>$request->input()], 200);
+    });
+    Route::get('/users', function(){
+        return response()->json(['msg'=>'Hello'], 200);
+    });    
 });
